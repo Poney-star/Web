@@ -1,0 +1,100 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+<main>
+    <div class="circle2"></div>
+    <div class="circle2" id="right"></div>
+    <div class="circle2" id="bottom"></div>
+
+    <div class="contact-container">
+        <h1 class="contact-title">Contactez-nous :</h1>
+        
+        <form class="contact-form" id="contactForm">
+            <div class="radio-group">
+                <label>Je suis * :</label>
+                <div class="radio-option">
+                    <input type="radio" id="student" name="userType" value="student" required>
+                    <label for="student">En recherche de stage</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="company" name="userType" value="company">
+                    <label for="company">Une entreprise</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="other" name="userType" value="other">
+                    <label for="other">Autre</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Nom Prénom * :</label>
+                <input type="text" id="name" required>
+                <div class="error" id="nameError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="company-name">Nom de l'entreprise :</label>
+                <input type="text" id="company-name" placeholder="Optionnel">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">E-mail * :</label>
+                    <input type="email" id="email" required>
+                    <div class="error" id="emailError"></div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Tél :</label>
+                    <input type="tel" id="phone">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message * :</label>
+                <textarea id="message" required placeholder="Veuillez entrer le contenu de votre message ici"></textarea>
+                <div class="error" id="messageError"></div>
+                <div class="char-count">0/750 caractères max</div>
+            </div>
+
+            <label for="fileUpload" class="file-upload">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+                </svg>
+                Joindre un fichier
+                <input type="file" id="fileUpload" hidden>
+            </label>
+            <div class="file-name" id="fileName"></div>
+            <div class="error" id="fileError"></div>
+
+            <button type="submit" class="submit-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                </svg>
+                Envoyer
+            </button>
+
+            <div class="required-note">Les champs marqués d'un (*) sont obligatoires</div>
+        </form>
+
+        <div class="footer-links">
+            <div>Nous contacter</div>
+            <div>Mentions légales et politique de confidentialité</div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block title %}
+Contact - Career Bloom
+{% endblock %}
+
+
+{% block scripts %}
+<script src="public/js/contact.js"></script>
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="public/css/style.css">
+{% endblock %}
+
+

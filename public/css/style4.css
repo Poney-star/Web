@@ -1,0 +1,398 @@
+:root {
+    --primary-color: #6a75ca;
+    --primary-light: #8c96e0;
+    --primary-dark: #4a5399;
+    --secondary-color: #f0f4ff;
+    --text-color: #333;
+    --text-light: #666;
+    --white: #fff;
+    --border-radius: 12px;
+    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+    --border-radius-full: 9999px; /* Ajout pour les bords complètement ronds */
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    background-color: #f5f7ff;
+    line-height: 1.6;
+  }
+  
+  /* Header Styles */
+  header {
+    background: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    justify-content: space-between;
+}
+
+.logo-container {
+    padding: 1rem;
+    text-align: left;
+}
+
+.logo-container img {
+    height: 70px;
+    object-fit: contain;
+    position: left;
+    position: absolute;
+    margin-top: -15px;
+}
+
+.nav-toggle {
+    display: none;
+}
+
+.nav-toggle-label {
+    display: none;
+    cursor: pointer;
+    padding: 1rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.nav-toggle-label span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--text-color);
+    margin: 5px 0;
+    transition: var(--transition);
+}
+
+nav {
+    background: rgb(197, 231, 251);
+    padding: 1rem;
+    display: fixed;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+/* Modification des liens de navigation pour avoir des bords ronds */
+nav a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-full); /* Changé pour avoir des bords complètement ronds */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: inline-block; /* Pour que le border-radius s'applique correctement */
+}
+
+nav a:hover {
+    background: rgba(37, 99, 235, 0.2);
+    color: #ffffff;
+}
+
+/* Style pour le lien actif */
+nav a.active {
+    color: #ffffff;
+    font-weight: 600;
+    background-color: #2563eb;
+}
+
+.login-btn {
+    right: 20px; /* Le pousse à droite */
+    top: 27%;
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    border: 2px solid #2563eb;
+    color: #2563eb;
+    border-radius: var(--border-radius-full); /* Changé pour avoir des bords complètement ronds */
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    position: absolute;
+}
+
+.login-btn:hover {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+  
+  /* Main Content */
+  main {
+    padding: 2rem 5%;
+  }
+  
+  .profile-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Profile Card */
+  .profile-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    height: fit-content;
+  }
+  
+  .profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+  }
+  
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: var(--primary-color);
+    border: 3px solid var(--primary-light);
+  }
+  
+  .profile-info h2 {
+    color: var(--primary-dark);
+    font-size: 1.5rem;
+  }
+  
+  .profile-details {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .detail-item {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+  }
+  
+  .label {
+    font-weight: 600;
+    min-width: 150px;
+    color: var(--primary-dark);
+  }
+  
+  .value {
+    color: var(--text-light);
+  }
+  
+  /* Documents Section */
+  .documents-section h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-dark);
+  }
+  
+  .documents {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .document-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    background-color: var(--secondary-color);
+    gap: 1rem;
+  }
+  
+  .document-item.available i {
+    color: #4CAF50;
+  }
+  
+  .document-item.missing i {
+    color: #F44336;
+  }
+  
+  .document-actions {
+    margin-left: auto;
+    font-size: 0.8rem;
+  }
+  
+  .action-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  
+  .action-link:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+  }
+  
+  /* Dashboard */
+  .dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .dashboard-section {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+  }
+  
+  .dashboard-section h3 {
+    color: var(--primary-dark);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.3rem;
+  }
+  
+  .section-content {
+    margin-bottom: 2rem;
+  }
+  
+  .section-content h4 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+  }
+  
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .card {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    position: relative;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .card-info {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--white);
+  }
+  
+  .card-info i {
+    color: #FFD700;
+  }
+  
+  .view-all {
+    display: block;
+    text-align: right;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+  }
+  
+  .view-all:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+  }
+  
+  .history-card .time-ago {
+    font-size: 0.9rem;
+    color: var(--text-light);
+  }
+  
+  /* Footer */
+  footer {
+    background-color: var(--primary-dark);
+    color: var(--white);
+    padding: 1rem 5%;
+    margin-top: 2rem;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  footer a {
+    color: var(--white);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  
+  footer a:hover {
+    text-decoration: underline;
+    opacity: 0.9;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .profile-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .cards-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      padding: 1rem;
+    }
+    
+    nav ul {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .cards-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .detail-item {
+      flex-direction: column;
+    }
+    
+    .label {
+      min-width: auto;
+    }
+    
+    .footer-content {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+  }

@@ -1,0 +1,24 @@
+<header>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <nav>
+        <div class="logo-container">
+            <img src="img/blossom-removebg-preview.png" alt="Career Bloom Logo">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="Offres.html">Offres de stage</a></li>
+                <li><a href="#">Entreprises</a></li>
+                <li><a href="#">Utilisateurs</a></li>
+                <li><a href="Contact.html">Nous contacter</a></li>
+            </ul>
+        </div>
+        <a href="{{ is_logged_in ? 'Profil.html' : 'login.html' }}" class="login-btn">
+            {{ is_logged_in ? 'Mon Compte' : 'Se connecter' }}
+        </a>
+    </nav>
+</header>

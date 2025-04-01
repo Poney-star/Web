@@ -1,0 +1,157 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+<main>
+  <div class="profile-container">
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-avatar">
+          <i class="fa-solid fa-user"></i>
+        </div>
+        <div class="profile-info">
+          <h2>Profil personnel</h2>
+        </div>
+      </div>
+      
+      <div class="profile-details">
+        <div class="detail-item">
+          <span class="label">Nom :</span>
+          <span class="value">{{user.name}}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Prénom :</span>
+          <span class="value">{{user.prename}}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Date de naissance :</span>
+          <span class="value">{{user.birthdate}}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Année d'étude :</span>
+          <span class="value">{{user.level}}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">E-mail :</span>
+          <span class="value">{{user.mail}}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Téléphone :</span>
+          <span class="value">{{user.phone}}</span>
+        </div>
+      </div>
+
+      <div class="documents-section">
+        <h3>Mes pièces jointes :</h3>
+        <div class="documents">
+          <div class="document-item available">
+            <i class="fa-solid fa-check"></i>
+            <span>Mon CV</span>
+            <div class="document-actions">
+              <a href="#" class="action-link">Modifier</a> / 
+              <a href="#" class="action-link">Supprimer</a>
+            </div>
+          </div>
+          <div class="document-item missing">
+            <i class="fa-solid fa-xmark"></i>
+            <span>Lettre de motivation</span>
+            <div class="document-actions">
+              <a href="#" class="action-link">Ajouter</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard">
+      <section class="dashboard-section">
+        <h3>MES FAVORIS</h3>
+        <div class="section-content">
+          <h4>MES ENTREPRISES :</h4>
+          <div class="cards-container">
+            <div class="card">
+              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YnVzaW5lc3MlMjBidWlsZGluZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="IGC">
+              <div class="card-info">
+                <span>IGC</span>
+                <i class="fa-solid fa-star"></i>
+              </div>
+            </div>
+            <div class="card">
+              <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8b2ZmaWNlJTIwYnVpbGRpbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="Pinterest">
+              <div class="card-info">
+                <span>Pinterest</span>
+                <i class="fa-solid fa-star"></i>
+              </div>
+            </div>
+            <div class="card">
+              <img src="https://images.unsplash.com/photo-1577760258779-e787a1733016?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG9mZmljZSUyMGJ1aWxkaW5nfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="SUEZ">
+              <div class="card-info">
+                <span>SUEZ</span>
+                <i class="fa-solid fa-star"></i>
+              </div>
+            </div>
+          </div>
+          <a href="#" class="view-all">Voir tout</a>
+        </div>
+
+        <div class="section-content">
+          <h4>MES OFFRES DE STAGE :</h4>
+          <div class="cards-container">
+            <div class="card">
+              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2ViJTIwZGV2ZWxvcG1lbnR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="Développement web">
+              <div class="card-info">
+                <span>Développement web</span>
+              </div>
+            </div>
+            <div class="card">
+              <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGN5YmVyc2VjdXJpdHl8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="Protection des Systèmes">
+              <div class="card-info">
+                <span>Protection des Systèmes</span>
+              </div>
+            </div>
+            <div class="card">
+              <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bmV0d29ya3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Sécurisation du réseau">
+              <div class="card-info">
+                <span>Sécurisation du réseau</span>
+              </div>
+            </div>
+          </div>
+          <a href="#" class="view-all">Voir tout</a>
+        </div>
+      </section>
+
+      <section class="dashboard-section history">
+        <h3>L'HISTORIQUE DE MES CANDIDATURES :</h3>
+        <div class="cards-container">
+          <div class="card history-card">
+            <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNvbXB1dGVyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="Candidature 1">
+            <div class="card-info">
+              <span class="time-ago">Il y a 5 heures</span>
+            </div>
+          </div>
+          <div class="card history-card">
+            <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2l0eXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Candidature 2">
+            <div class="card-info">
+              <span class="time-ago">Il y a 12 heures</span>
+            </div>
+          </div>
+          <div class="card history-card">
+            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8b2ZmaWNlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="Candidature 3">
+            <div class="card-info">
+              <span class="time-ago">Il y a 1 jour</span>
+            </div>
+          </div>
+        </div>
+        <a href="#" class="view-all">Voir tout</a>
+      </section>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block title %}
+Profil - Career Bloom
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="public/css/style.css">
+{% endblock %}

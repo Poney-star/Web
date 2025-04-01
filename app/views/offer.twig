@@ -1,0 +1,216 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+<main class="container main-content">
+  <div class="img">
+      <div class="circle2"></div>
+      <div class="circle2" id="right"></div>
+      <div class="circle2" id="bottom"></div>
+
+  <div class="content-wrapper">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sort-section">
+        <span class="sort-label">Trier par :</span>
+        <div class="select-wrapper">
+          <select class="sort-select">
+            <option>Top des offres</option>
+            <option>Plus récentes</option>
+            <option>Durée</option>
+          </select>
+          <span class="select-icon">▼</span>
+        </div>
+      </div>
+      
+      <div class="filter-header">
+        <span class="filter-title">Filtres</span>
+        <span class="filter-icon">⚙️</span>
+      </div>
+      
+      <div class="filter-accordions">
+        <div class="accordion">
+          <button class="accordion-btn">
+            <span>Domaine d'activité</span>
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <label class="checkbox-label">
+              <input type="checkbox"> Option 1
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox"> Option 2
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox"> Option 3
+            </label>
+          </div>
+        </div>
+        
+        <div class="accordion">
+          <button class="accordion-btn">
+            <span>Compétences</span>
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <label class="checkbox-label">
+              <input type="checkbox"> Option 1
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox"> Option 2
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox"> Option 3
+            </label>
+          </div>
+        </div>
+        
+        <div class="accordion">
+          <button class="accordion-btn">
+            <span>Localisation</span>
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <label class="checkbox-label">
+              <input type="checkbox"> Option 1
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox"> Option 2
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox"> Option 3
+            </label>
+          </div>
+        </div>
+        
+        <div class="accordion">
+          <button class="accordion-btn">
+            <span>Durée de stage</span>
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <label class="checkbox-label">
+              <input type="checkbox"> Option 1
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox"> Option 2
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox"> Option 3
+            </label>
+          </div>
+        </div>
+        
+        <div class="accordion">
+          <button class="accordion-btn">
+            <span>Secteur d'activité</span>
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <label class="checkbox-label">
+              <input type="checkbox"> Option 1
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox"> Option 2
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox"> Option 3
+            </label>
+          </div>
+        </div>
+        
+        <div class="accordion">
+          <button class="accordion-btn">
+            <span>Entreprise</span>
+            <span class="accordion-icon">▼</span>
+          </button>
+          <div class="accordion-content">
+            <label class="checkbox-label">
+              <input type="checkbox"> Option 1
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox"> Option 2
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox"> Option 3
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <button class="btn btn-add">
+        <span class="plus-icon">+</span>
+        Ajouter une offre
+      </button>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="content">
+      <div class="page-header">
+        <h2 class="page-title">NOS OFFRES DE STAGE</h2>
+        <p class="page-subtitle">
+          Trouvez le stage qui vous convient parmi plus de 1,5 millions présents sur ce site
+        </p>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="search-container">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Entrez un mot clé" class="search-input">
+        </div>
+        <div class="search-box">
+          <span class="search-icon">📍</span>
+          <input type="text" placeholder="Rechercher par ville / région / code postal" class="search-input">
+        </div>
+      </div>
+
+      <!-- Internship Cards -->
+      <div class="cards-grid">
+        {% for offer in offers %}
+          <div class="card">
+              <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Institut Élégance">
+              </div>
+              <div class="card-content">
+                  <button class="favorite-btn"></button>
+                  <div class="card-info">
+                      <h3 class="card-title">Entreprise : <span>{{ offer.company }}</span></h3>
+                      <p class="card-location">Ville : <span>{{ offer.city }}</span></p>
+                  </div>
+                  <div class="card-details">
+                      <p>Domaine : <span>{{ offer.domain }}</span></p>
+                      <p>Durée stage : <span>{{ offer.length }}</span></p>
+                      <p>Salaire : <span>{{ offer.wage }}</span></p>
+                  </div>
+                  <div class="card-actions">
+                      <button class="action-btn edit-btn">Modifier</button>
+                      <span class="action-separator">/</span>
+                      <button class="action-btn delete-btn">Supprimer</button>
+                  </div>
+              </div>
+          </div>
+          {% else %}
+              <p>Aucune offre disponible pour le moment.</p>
+          {% endfor %}
+      </div>
+      
+      <!-- Pagination -->
+      <div class="pagination">
+        <p>1 / 2 &gt;</p>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="public/css/offer.css">
+{% endblock %}
+
+{% block scripts %}
+<script src="public/js/offer.js"></script>
+{% endblock %}
+
+{% block title %}
+Offres - Career Bloom
+{% endblock %}
