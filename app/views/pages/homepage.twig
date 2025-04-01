@@ -1,4 +1,4 @@
-{% extends "layout.twig" %}
+{% extends "basics/layout.twig" %}
 
 {% block stylesheets %}
 <link rel="stylesheet" href="css/homepage.css">
@@ -59,19 +59,7 @@
         <section class="latest-articles">
             <h2>Dernières offres ajoutées</h2>
             <div class="articles-grid">
-                {% for offer in offers %}
-                    <article class="article-card">
-                        <img src="img/DM.jpeg" alt="Image de l'offre">
-                        <div class="article-content">
-                            <h3>{{ offer.title }}</h3>
-                            <p class="category">{{ offer.city }}</p>
-                            <p class="price">{{ offer.wage }}</p>
-                            <p class="date">{{ offer.length }}</p>
-                        </div>
-                    </article>
-                {% else %}
-                    <p>Aucune offre disponible pour le moment.</p>
-                {% endfor %}
+                {% include "components/offers.twig" %}
             </div>
         </section>
 

@@ -4,7 +4,7 @@
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
-class HomepageController
+class ContactpageController
 {
     private $twig;
 
@@ -15,9 +15,9 @@ class HomepageController
         $this->twig = new Environment($loader);
     }
 
-    public function loadHomepage()
+    public function loadpage()
     {
         // Rendu de la page Twig avec les données
-        echo $this->twig->render('homepage.twig', ['current_time' => date('l jS \of F Y h:i:s A')]);
+        echo $this->twig->render('contact.twig');
     }
 }

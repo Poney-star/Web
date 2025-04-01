@@ -1,5 +1,5 @@
 <?php
-class Company {
+class CompanyModel {
 
     private $pdo;
 
