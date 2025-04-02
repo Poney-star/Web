@@ -18,6 +18,6 @@ class ContactpageController
     public function loadpage()
     {
         // Rendu de la page Twig avec les données
-        echo $this->twig->render('contact.twig');
+        echo $this->twig->render('pages/contact.twig');
     }
 }

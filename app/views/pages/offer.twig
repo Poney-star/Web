@@ -26,43 +26,6 @@
         <span class="filter-title">Filtres</span>
         <span class="filter-icon">⚙️</span>
       </div>
-      
-      <div class="filter-accordions">
-        <div class="accordion">
-          <button class="accordion-btn">
-            <span>Domaine d'activité</span>
-            <span class="accordion-icon">▼</span>
-          </button>
-          <div class="accordion-content">
-            <label class="checkbox-label">
-              <input type="checkbox"> Option 1
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox"> Option 2
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox"> Option 3
-            </label>
-          </div>
-        </div>
-        
-        <div class="accordion">
-          <button class="accordion-btn">
-            <span>Compétences</span>
-            <span class="accordion-icon">▼</span>
-          </button>
-          <div class="accordion-content">
-            <label class="checkbox-label">
-              <input type="checkbox"> Option 1
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox"> Option 2
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox"> Option 3
-            </label>
-          </div>
-        </div>
         
         <div class="accordion">
           <button class="accordion-btn">
@@ -70,15 +33,11 @@
             <span class="accordion-icon">▼</span>
           </button>
           <div class="accordion-content">
+            {% for filterElement in filter.city %}
             <label class="checkbox-label">
-              <input type="checkbox"> Option 1
+              <input type="checkbox"> {{filterElement}}
             </label>
-            <label class="checkbox-label">
-              <input type="checkbox"> Option 2
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox"> Option 3
-            </label>
+            {% endfor %}
           </div>
         </div>
         
@@ -88,15 +47,11 @@
             <span class="accordion-icon">▼</span>
           </button>
           <div class="accordion-content">
+            {% for filterElement in filter.length %}
             <label class="checkbox-label">
-              <input type="checkbox"> Option 1
+              <input type="checkbox"> {{filterElement}}
             </label>
-            <label class="checkbox-label">
-              <input type="checkbox"> Option 2
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox"> Option 3
-            </label>
+            {% endfor %}
           </div>
         </div>
         
@@ -106,15 +61,11 @@
             <span class="accordion-icon">▼</span>
           </button>
           <div class="accordion-content">
+            {% for filterElement in filter.domain %}
             <label class="checkbox-label">
-              <input type="checkbox"> Option 1
+              <input type="checkbox"> {{filterElement}}
             </label>
-            <label class="checkbox-label">
-              <input type="checkbox"> Option 2
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox"> Option 3
-            </label>
+            {% endfor %}
           </div>
         </div>
         
@@ -124,15 +75,11 @@
             <span class="accordion-icon">▼</span>
           </button>
           <div class="accordion-content">
+            {% for filterElement in filter.company %}
             <label class="checkbox-label">
-              <input type="checkbox"> Option 1
+              <input type="checkbox"> {{filterElement}}
             </label>
-            <label class="checkbox-label">
-              <input type="checkbox"> Option 2
-            </label>
-            <label class="checkbox-label">
-              <input type="checkbox"> Option 3
-            </label>
+            {% endfor %}
           </div>
         </div>
       </div>
@@ -196,7 +143,7 @@
       
       <!-- Pagination -->
       <div class="pagination">
-        <p>1 / 2 &gt;</p>
+        <p>{{app.request.query.get('l') ~ '/' ~ pages}}</p>
       </div>
     </div>
   </div>

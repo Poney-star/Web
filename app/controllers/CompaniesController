@@ -22,7 +22,7 @@ class CompaniespageController
     public function loadpage()
     {
         // Rendu de la page Twig avec les données
-        echo $this->twig->render('companies.twig');
+        echo $this->twig->render('pages/companies.twig');
     }
 
     public function getCompanies()

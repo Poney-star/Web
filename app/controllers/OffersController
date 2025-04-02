@@ -8,18 +8,20 @@ class OfferspageController
 {
     private $twig;
     private $offerIndex;
+    private $offerModel;
 
-    public function __construct($i)
+    public function __construct(string $i)
     {
         // Initialisation de Twig
         $loader = new FilesystemLoader(__DIR__ . '/../views');
         $this->twig = new Environment($loader);
-        $this->$offerIndex = $i;
+        $this->offersModel = new OfferModel();
+        $this->offerIndex = $i;
     }
 
     public function loadpage()
     {
         // Rendu de la page Twig avec les données
-        echo $this->twig->render('homepage.twig', ['current_time' => date('l jS \of F Y h:i:s A')]);
+        echo $this->twig->render('pages/offer.twig', ['offers' => date('l jS \of F Y h:i:s A')]);
     }
 }
