@@ -4,7 +4,7 @@
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
-class SignUppageController
+class ContactController
 {
     private $twig;
 
@@ -18,6 +18,6 @@ class SignUppageController
     public function loadpage()
     {
         // Rendu de la page Twig avec les données
-        echo $this->twig->render('pages/signup.twig');
+        echo $this->twig->render('pages/contact.twig');
     }
 }

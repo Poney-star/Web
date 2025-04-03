@@ -4,7 +4,7 @@
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
-class UserListpageController
+class LoginController
 {
     private $twig;
 
@@ -18,6 +18,6 @@ class UserListpageController
     public function loadpage()
     {
         // Rendu de la page Twig avec les données
-        echo $this->twig->render('pages/userList.twig');
+        echo $this->twig->render('pages/login.twig');
     }
 }

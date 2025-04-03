@@ -1,47 +1,47 @@
 <?php
 
-require_once '../vendor/autoload.php';
-require_once '../app/controllers/HomeController';
-require_once '../app/controllers/ContactController';
-require_once '../app/controllers/CompaniesController';
-require_once '../app/controllers/OffersController';
-require_once '../app/controllers/ErrorController';
-require_once '../app/controllers/UsersController';
-require_once '../app/controllers/ProfileController';
-require_once '../app/controllers/LoginController';
-require_once '../app/controllers/SignUpController';
+require_once __DIR__ .'/../vendor/autoload.php';
+require_once __DIR__ .'/../app/controllers/HomeController.php';
+require_once __DIR__ .'/../app/controllers/ContactController.php';
+require_once __DIR__ .'/../app/controllers/CompaniesController.php';
+require_once __DIR__ .'/../app/controllers/OffersController.php';
+require_once __DIR__ .'/../app/controllers/ErrorController.php';
+require_once __DIR__ .'/../app/controllers/UsersController.php';
+require_once __DIR__ .'/../app/controllers/ProfileController.php';
+require_once __DIR__ .'/../app/controllers/LoginController.php';
+require_once __DIR__ .'/../app/controllers/SignUpController.php';
 
 $page = $_GET['page'] ?? 'home';
 
 if ($page === 'home') 
 {
-    $controller = new HomepageController();
+    $controller = new HomeController();
 } else if ($page === 'contact')
 {
-    $controller = new ContactpageController();
+    $controller = new ContactController();
 } else if ($page === 'companies')
 {
-    $index = $_GET['i'] ?? '1';
-    $controller = new CompaniespageController($index);
+    $page = $_GET['l'] ?? '1';
+    $controller = new CompaniesController($page);
 } else if ($page === 'offers')
 {
-    $index = $_GET['i'] ?? '1';
-    $controller = new OfferspageController($index);
+    $page = $_GET['l'] ?? '1';
+    $controller = new OffersController($page);
 } else if ($page === 'users')
 {
-    $index = $_GET['i'] ?? '1';
-    $controller = new UserspageController($index);
+    $page = $_GET['l'] ?? '1';
+    $controller = new UsersController($page);
 } else if ($page === 'profile')
 {
-    $controller = new ProfilepageController();
+    $controller = new ProfileController();
 } else if ($page === 'login')
 {
-    $controller = new LoginpageController();
+    $controller = new LoginController();
 } else if ($page === 'sign-up')
 {
-    $controller = new SignUppageController();
+    $controller = new SignUpController();
 } else {
-    $controller = new ErrorpageController();
+    $controller = new ErrorController();
 }
 
 $controller->loadpage();

@@ -329,31 +329,6 @@ nav a.active {
     color: var(--text-light);
   }
   
-  /* Footer */
-  footer {
-    background-color: var(--primary-dark);
-    color: var(--white);
-    padding: 1rem 5%;
-    margin-top: 2rem;
-  }
-  
-  .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  footer a {
-    color: var(--white);
-    text-decoration: none;
-    transition: var(--transition);
-  }
-  
-  footer a:hover {
-    text-decoration: underline;
-    opacity: 0.9;
-  }
-  
   /* Responsive Design */
   @media (max-width: 1024px) {
     .profile-container {

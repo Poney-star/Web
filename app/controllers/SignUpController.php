@@ -4,24 +4,20 @@
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
-class OfferspageController
+class SignUpController
 {
     private $twig;
-    private $offerIndex;
-    private $offerModel;
 
-    public function __construct(string $i)
+    public function __construct()
     {
         // Initialisation de Twig
         $loader = new FilesystemLoader(__DIR__ . '/../views');
         $this->twig = new Environment($loader);
-        $this->offersModel = new OfferModel();
-        $this->offerIndex = $i;
     }
 
     public function loadpage()
     {
         // Rendu de la page Twig avec les données
-        echo $this->twig->render('pages/offer.twig', ['offers' => ]);
+        echo $this->twig->render('pages/signup.twig');
     }
 }

@@ -1,24 +1,31 @@
 <?php
 
-
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
-class ErrorpageController
+class CompaniesController
 {
     private $twig;
-    private $offerModel;
+    private $companyIndex;
+    private $companies;
 
-    public function __construct()
+    public function __construct($i)
     {
         // Initialisation de Twig
         $loader = new FilesystemLoader(__DIR__ . '/../views');
         $this->twig = new Environment($loader);
+        $this->$companies = new CompanyModel();
+        $this->$companyIndex = $i;
     }
 
     public function loadpage()
     {
         // Rendu de la page Twig avec les données
-        echo $this->twig->render('errors/errornotfound.twig');
+        echo $this->twig->render('pages/companies.twig');
     }
-}
+
+    public function getCompanies()
+    {
+
+    }
+}   

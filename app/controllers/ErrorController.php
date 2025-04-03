@@ -4,9 +4,10 @@
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
-class LoginpageController
+class ErrorController
 {
     private $twig;
+    private $offerModel;
 
     public function __construct()
     {
@@ -18,6 +19,6 @@ class LoginpageController
     public function loadpage()
     {
         // Rendu de la page Twig avec les données
-        echo $this->twig->render('pages/login.twig');
+        echo $this->twig->render('errors/errornotfound.twig');
     }
 }

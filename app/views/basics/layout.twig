@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}Career Bloom{% endblock %}</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/header.css">
-  {% block stylesheets %}<link rel="stylesheet" href="css/style.css">{% endblock %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Career Bloom{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    {% block stylesheets %}<link rel="stylesheet" href="css/style.css">{% endblock %}
 </head>
 <body>
     <!-- En-tête -->
@@ -16,11 +17,9 @@
     </header>
     
     <!-- Contenu principal -->
-    <main>
-        {% block content %}
-            {# Contenu spécifique à chaque page sera inséré ici #}
-        {% endblock %}
-    </main>
+    {% block content %}
+        {# Contenu spécifique à chaque page sera inséré ici #}
+    {% endblock %}
     
     <!-- Pied de page -->
     <footer>

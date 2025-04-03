@@ -2,10 +2,6 @@
 
 {% block content %}
 <main class="container main-content">
-  <div class="img">
-      <div class="circle2"></div>
-      <div class="circle2" id="right"></div>
-      <div class="circle2" id="bottom"></div>
 
   <div class="content-wrapper">
     <!-- Sidebar -->
@@ -14,9 +10,9 @@
         <span class="sort-label">Trier par :</span>
         <div class="select-wrapper">
           <select class="sort-select">
-            <option>Top des offres</option>
+            <option>Mieux notés</option>
             <option>Plus récentes</option>
-            <option>Durée</option>
+            <option>Ordre alphabétique</option>
           </select>
           <span class="select-icon">▼</span>
         </div>
@@ -33,10 +29,12 @@
             <span class="accordion-icon">▼</span>
           </button>
           <div class="accordion-content">
-            {% for filterElement in filter.city %}
-            <label class="checkbox-label">
-              <input type="checkbox"> {{filterElement}}
-            </label>
+            {% for filterElement in filters %}
+              {% if filterElement.Ville is not empty %}
+                <label class="checkbox-label">
+                  <input type="checkbox" class="filter-checkbox city"> {{ filterElement.Ville }}
+                </label>
+              {% endif %}
             {% endfor %}
           </div>
         </div>
@@ -47,10 +45,12 @@
             <span class="accordion-icon">▼</span>
           </button>
           <div class="accordion-content">
-            {% for filterElement in filter.length %}
-            <label class="checkbox-label">
-              <input type="checkbox"> {{filterElement}}
-            </label>
+            {% for filterElement in filters %}
+              {% if filterElement.Duree is not empty %}
+                <label class="checkbox-label">
+                  <input type="checkbox" class="filter-checkbox duration"> {{ filterElement.Duree }}
+                </label>
+              {% endif %}
             {% endfor %}
           </div>
         </div>
@@ -61,10 +61,12 @@
             <span class="accordion-icon">▼</span>
           </button>
           <div class="accordion-content">
-            {% for filterElement in filter.domain %}
-            <label class="checkbox-label">
-              <input type="checkbox"> {{filterElement}}
-            </label>
+            {% for filterElement in filters %}
+              {% if filterElement.Secteur_Activite is not empty %}
+                <label class="checkbox-label">
+                  <input type="checkbox" class="filter-checkbox sector"> {{ filterElement.Secteur_Activite }}
+                </label>
+              {% endif %}
             {% endfor %}
           </div>
         </div>
@@ -75,19 +77,16 @@
             <span class="accordion-icon">▼</span>
           </button>
           <div class="accordion-content">
-            {% for filterElement in filter.company %}
-            <label class="checkbox-label">
-              <input type="checkbox"> {{filterElement}}
-            </label>
+            {% for filterElement in filters %}
+              {% if filterElement.Nom is not empty %}
+                <label class="checkbox-label">
+                  <input type="checkbox" class="filter-checkbox company"> {{ filterElement.Nom }}
+                </label>
+              {% endif %}
             {% endfor %}
-          </div>
         </div>
       </div>
-      
-      <button class="btn btn-add">
-        <span class="plus-icon">+</span>
-        Ajouter une offre
-      </button>
+      <button class="btn filter-confirm">Appliquer les filtres</button>
     </aside>
 
     <!-- Main Content -->
@@ -107,13 +106,13 @@
         </div>
         <div class="search-box">
           <span class="search-icon">📍</span>
-          <input type="text" placeholder="Rechercher par ville / région / code postal" class="search-input">
+          <input type="text" placeholder="Rechercher par ville" class="search-input">
         </div>
       </div>
 
       <!-- Internship Cards -->
       <div class="cards-grid">
-        {% include "components/offershome.twig" %}
+        {% include "components/offers.twig" %}
       </div>
       
       <!-- Pagination -->
@@ -126,11 +125,11 @@
 {% endblock %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="public/css/offer.css">
+<link rel="stylesheet" href="css/offer.css">
 {% endblock %}
 
 {% block scripts %}
-<script src="public/js/offer.js"></script>
+<script src="js/offer.js"></script>
 {% endblock %}
 
 {% block title %}

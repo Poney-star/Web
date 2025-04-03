@@ -12,18 +12,19 @@
 {% for offer in offers %}
 <div class="card">
     <div class="card-image">
-    <img src="assets/{{ random(images) }}" alt="Image offre">
+    <img src="assets/covers/offers/{{ random(images) }}" alt="Image offre">
     </div>
     <div class="card-content">
         <button class="favorite-btn"></button>
         <div class="card-info">
-            <h3 class="card-title">Entreprise : <span>{{ offer.Nom_Entreprise }}</span></h3>
+            <h3 class="card-title">{{ offer.Titre }}</h3>
             <p class="card-location">Ville : <span>{{ offer.Ville }}</span></p>
         </div>
         <div class="card-details">
+            <p>Entreprise : <span>{{ offer.Nom }}</span></p>
             <p>Domaine : <span>{{ offer.Secteur_Activite }}</span></p>
-            <p>Durée stage : <span>{{ offer.Duree }}</span></p>
-            <p>Salaire : <span>{{ offer.Base_Remuneration }}</span></p>
+            <p>Durée stage : <span>{{ offer.Duree }} mois</span></p>
+            <p>Salaire : <span>{{ offer.Base_Remuneration }} € / mois</span></p>
         </div>
         <div class="card-actions">
             <button class="action-btn edit-btn">Modifier</button>

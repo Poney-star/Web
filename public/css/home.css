@@ -484,16 +484,6 @@ nav ul li a.active {
     color: var(--primary-color);
 }
 
-/* Footer */
-footer {
-    background: rgba(73, 126, 243, 0.5);
-    color: white;
-    text-align: center;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    margin-top: 4rem;
-}
-
 /* Animations */
 @keyframes fadeInUp {
     from {

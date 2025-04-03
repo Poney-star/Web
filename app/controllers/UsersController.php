@@ -3,9 +3,8 @@
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
-require_once("../app/models/offer.php");
 
-class HomepageController
+class UserListController
 {
     private $twig;
 
@@ -14,12 +13,11 @@ class HomepageController
         // Initialisation de Twig
         $loader = new FilesystemLoader(__DIR__ . '/../views');
         $this->twig = new Environment($loader);
-        $this->offerModel = new OfferModel();
     }
 
     public function loadpage()
     {
         // Rendu de la page Twig avec les données
-        echo $this->twig->render('pages/homepage.twig', ['current_time' => date('l jS \of F Y h:i:s A'), 'offers' => $this->offerModel->listOffers(page : 1, limit : 3, orderby : "Date_Mise_En_Ligne")]);
+        echo $this->twig->render('pages/userList.twig');
     }
 }

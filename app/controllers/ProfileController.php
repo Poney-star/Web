@@ -4,11 +4,11 @@
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
-class ContactpageController
+class ProfileController
 {
     private $twig;
 
-    public function __construct()
+    public function __construct(string $i)
     {
         // Initialisation de Twig
         $loader = new FilesystemLoader(__DIR__ . '/../views');
@@ -18,6 +18,6 @@ class ContactpageController
     public function loadpage()
     {
         // Rendu de la page Twig avec les données
-        echo $this->twig->render('pages/contact.twig');
+        echo $this->twig->render('pages/profile.twig');
     }
 }

@@ -11,11 +11,11 @@
 ] %}
 {% for offer in offers %}
     <article class="article-card">
-        <img src="assets/{{ random(images) }}" alt="Image offre">
+        <img src="assets/covers/offers/{{ random(images) }}" alt="Image offre">
         <div class="article-content">
             <h3>{{ offer.Titre }}</h3>
             <p class="category">{{ offer.Ville }}</p>
-            <p class="price">{{ offer.Base_Remuneration }} €/mois</p>
+            <p class="price">{{ offer.Base_Remuneration }} € / mois</p>
             <p class="date">{{ offer.Duree }} mois</p>
         </div>
     </article>
