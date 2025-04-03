@@ -22,6 +22,6 @@ class OfferspageController
     public function loadpage()
     {
         // Rendu de la page Twig avec les données
-        echo $this->twig->render('pages/offer.twig', ['offers' => date('l jS \of F Y h:i:s A')]);
+        echo $this->twig->render('pages/offer.twig', ['offers' => ]);
     }
 }

@@ -1,0 +1,203 @@
+/* Header Styles - Shared across all pages */
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1e40af;
+    --background-color: #c5e7fb;
+    --text-color: #1f2937;
+    --border-radius: 8px;
+    --border-radius-full: 9999px;
+    --transition: all 0.3s ease;
+}
+
+header {
+    background: var(--background-color);
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-toggle {
+    display: none;
+}
+
+.nav-toggle-label {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.nav-toggle-label span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--secondary-color);
+    margin: 5px 0;
+    transition: var(--transition);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.logo-container img {
+    height: 60px;
+    width: auto;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-full);
+    transition: var(--transition);
+}
+
+nav ul li a:hover {
+    background: rgba(30, 64, 175, 0.1);
+}
+
+nav ul li a.active {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.login-btn {
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--border-radius-full);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.login-btn:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 1024px) {
+    nav {
+        padding: 0 1rem;
+    }
+    
+    nav ul {
+        gap: 1rem;
+    }
+    
+    .logo-container {
+        gap: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        padding: 0.5rem 1rem;
+    }
+
+    .nav-toggle-label {
+        display: block;
+    }
+
+    .logo-container {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    nav {
+        position: relative;
+        padding: 0;
+    }
+
+    nav ul {
+        display: none;
+        position: absolute;
+        top: calc(100% + 0.5rem);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: var(--background-color);
+        padding: 1rem 0;
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 0.75rem 2rem;
+        border-radius: 0;
+    }
+
+    .nav-toggle:checked ~ nav ul {
+        display: flex;
+    }
+
+    .login-btn {
+        position: absolute;
+        right: 4rem;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .nav-toggle:checked + .nav-toggle-label span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav-toggle:checked + .nav-toggle-label span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .nav-toggle:checked + .nav-toggle-label span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    header {
+        padding: 0.5rem;
+    }
+
+    .logo-container img {
+        height: 40px;
+    }
+
+    .login-btn {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.8rem;
+        right: 3.5rem;
+    }
+
+    nav ul li a {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}

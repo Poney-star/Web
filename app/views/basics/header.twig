@@ -1,19 +1,20 @@
-<nav class="navbar">
-    <div class="logo"><img src="img/blossom-removebg-preview.png" alt="Logo du site"></div>
-    <input type="checkbox" id="menu-toggle">
-    <label for="menu-toggle" class="menu-icon">&#9776;</label>
-    <ul class="nav-links">
-        <li><a {{ app.request.query.get('page') == 'home' ? 'class = "active"' : 'href="?page=home"' }}>Accueil</a></li>
-        <li><a {{ app.request.query.get('page') == 'offers' ? 'class = "active"' : 'href="?page=offers"' }}>Offre de stage</a></li>
-        <li><a {{ app.request.query.get('page') =='companies' ? 'class = "active"' : 'href="?page=companies"' }}>Entreprises</a></li>
-        <li><a {{ app.request.query.get('page') == 'users' ? 'class = "active"' : 'href="?page=users"' }}>Utilisateurs</a></li>
-        <li><a {{ app.request.query.get('page') == 'contact' ? 'class = "active"' : 'href="?page=contact"' }}>Nous contacter</a></li>
+<input type="checkbox" id="nav-toggle" class="nav-toggle">
+<label for="nav-toggle" class="nav-toggle-label">
+    <span></span>
+    <span></span>
+    <span></span>
+</label>
+
+<nav>
+    <div class="logo-container">
+        <img src="img/blossom-removebg-preview.png" alt="LeBonPlan Logo">
+    <ul>
+        <li><a href="#" class="active">Accueil</a></li>
+        <li><a href="Offres.html">Offre de stage</a></li>
+        <li><a href="#">Entreprises</a></li>
+        <li><a href="#">Utilisateurs</a></li>
+        <li><a href="Contact.html">Nous contacter</a></li>
     </ul>
-    <a href="{{ loggedIn ? '?page=profile' : '?page=login' }}">
-        <ul class="login-btn">
-            <li>
-            {{ loggedIn ? 'Mon Compte' : 'Se connecter / S\'inscrire' }}
-            </li>
-        </ul>
-    </a>
+    </div>
+    <a href="Connexion.html" class="login-btn">Se connecter / S'inscrire</a>
 </nav>

@@ -1,17 +1,11 @@
 {% extends "basics/layout.twig" %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="css/homepage.css">
+<link rel="stylesheet" href="css/home.css">
 {% endblock %}
 
 {% block content %}
 <main>
-        <div class="img">
-            <div class="circle2"></div>
-            <div class="circle2" id="right"></div>
-            <div class="circle2" id="bottom"></div>
-            
-        <p>Time : {{ current_time }}</p>
 
         <section class="hero">
             <div class="hero" style="background-image: url('C:\Users\Administrateur\Downloads\Page Web\project-bolt-sb1-mt579nvo (1)\project\ImgR_1.png'); background-size: cover; background-position: center; background-attachment: fixed;">
@@ -59,7 +53,7 @@
         <section class="latest-articles">
             <h2>Dernières offres ajoutées</h2>
             <div class="articles-grid">
-                {% include "components/offers.twig" %}
+                {% include "components/offershome.twig" %}
             </div>
         </section>
 
@@ -80,5 +74,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="js/index.js"></script>
+<script src="js/home.js"></script>
 {% endblock %}

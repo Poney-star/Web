@@ -10,15 +10,28 @@
     "cover-offer-33.jpg"
 ] %}
 {% for offer in offers %}
-    <article class="article-card">
-        <img src="assets/{{ random(images) }}" alt="Image de l'offre">
-        <div class="article-content">
-            <h3>{{ offer.Titre }}</h3>
-            <p class="category">{{ offer.Ville }}</p>
-            <p class="price">{{ offer.Base_Remuneration }}</p>
-            <p class="date">{{ offer.Duree }}</p>
+<div class="card">
+    <div class="card-image">
+    <img src="assets/{{ random(images) }}" alt="Image offre">
+    </div>
+    <div class="card-content">
+        <button class="favorite-btn"></button>
+        <div class="card-info">
+            <h3 class="card-title">Entreprise : <span>{{ offer.Nom_Entreprise }}</span></h3>
+            <p class="card-location">Ville : <span>{{ offer.Ville }}</span></p>
         </div>
-    </article>
+        <div class="card-details">
+            <p>Domaine : <span>{{ offer.Secteur_Activite }}</span></p>
+            <p>Durée stage : <span>{{ offer.Duree }}</span></p>
+            <p>Salaire : <span>{{ offer.Base_Remuneration }}</span></p>
+        </div>
+        <div class="card-actions">
+            <button class="action-btn edit-btn">Modifier</button>
+            <span class="action-separator">/</span>
+            <button class="action-btn delete-btn">Supprimer</button>
+        </div>
+    </div>
+</div>
 {% else %}
     <p>Aucune offre disponible pour le moment.</p>
 {% endfor %}

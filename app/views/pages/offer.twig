@@ -113,32 +113,7 @@
 
       <!-- Internship Cards -->
       <div class="cards-grid">
-        {% for offer in offers %}
-          <div class="card">
-              <div class="card-image">
-              <img src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Institut Élégance">
-              </div>
-              <div class="card-content">
-                  <button class="favorite-btn"></button>
-                  <div class="card-info">
-                      <h3 class="card-title">Entreprise : <span>{{ offer.company }}</span></h3>
-                      <p class="card-location">Ville : <span>{{ offer.city }}</span></p>
-                  </div>
-                  <div class="card-details">
-                      <p>Domaine : <span>{{ offer.domain }}</span></p>
-                      <p>Durée stage : <span>{{ offer.length }}</span></p>
-                      <p>Salaire : <span>{{ offer.wage }}</span></p>
-                  </div>
-                  <div class="card-actions">
-                      <button class="action-btn edit-btn">Modifier</button>
-                      <span class="action-separator">/</span>
-                      <button class="action-btn delete-btn">Supprimer</button>
-                  </div>
-              </div>
-          </div>
-          {% else %}
-              <p>Aucune offre disponible pour le moment.</p>
-          {% endfor %}
+        {% include "components/offershome.twig" %}
       </div>
       
       <!-- Pagination -->
