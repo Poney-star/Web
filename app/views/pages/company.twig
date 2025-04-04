@@ -1,6 +1,112 @@
 {% extends "basics/layout.twig" %}
 
-{% block scripts %}
+{% block content %}
+<main class="container main-content">
+    <div class="content-wrapper">
+      <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sort-section">
+                <span class="sort-label">Trier par:</span>
+                <div class="select-wrapper">
+                    <select class="sort-select">
+                    <option>Mieux notées</option>
+                    <option>Plus récents</option>
+                    <option>Ordre alphabétique</option>
+                    </select>
+                    <span class="select-icon">▼</span>
+                </div>
+            </div>
+            
+            <div class="filter-header">
+            <span class="filter-title">Filtres</span>
+            <span class="filter-icon">⚙️</span>
+            </div>
+            
+            <div class="filter-accordions">
+                <div class="accordion">
+                    <button class="accordion-btn">
+                        <span>Ville</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        {% for filterElement in filters %}
+                            {% if filterElement.Ville is not empty %}
+                                <label class="checkbox-label">
+                                    <input type = "checkbox" type="filter-checkbox city"> {{ filterElement.Ville }}
+                                </label>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
 
+                <div class="accordion">
+                    <button class="accordion-btn">
+                        <span>Note globale</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        {% for i in 1..5 %}
+                            <label class="checkbox-label">
+                                <input type = "checkbox" class="filter-checkbox note" value = {{6 - i}}>
+                                {%for j in i..5 %}
+                                    <span class="star">★</span>
+                                {% endfor %}
+                                {% if i > 1 %}
+                                    {%for j in 1..(i-1) %}
+                                        <span class="star" style="color: #ccc;">★</span>
+                                    {% endfor %}
+                                {% endif %}
+                            </label>
+                        {% endfor %}
+                    </div>
+                </div>
+            
+            <button class="btn filter-confirm">Appliquer les filtres</button>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="content">
+            <div class="page-header">
+                <h2 class="page-title">NOS ENTREPRISES</h2>
+                <p class="page-subtitle">
+                    Trouvez l'entreprise qui vous convient parmis plus de 500 000 présentes sur ce site
+                </p>
+            </div>
+
+        <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Rechercher par nom d'entreprise / domaine" class="search-input">
+                </div>
+                <div class="search-box">
+                    <span class="search-icon">📍</span>
+                    <input type="text" placeholder="Rechercher par ville" class="search-input">
+                </div>
+            </div>
+
+        <!-- Internship Cards -->
+            <div class="cards-grid">
+                {% include 'components/companies.twig' %}
+            </div>
+        
+        <!-- Pagination -->
+            <div class="pagination">
+                <p>{{page ~ '/' ~ pages}}</p>
+            </div>
+        </div>
+    </div>
+</main>
 {% endblock %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="css/offer.css">
+{% endblock %}
+
+{% block scripts %}
+<script src="js/company.js"></script>
+{% endblock %}
+
+{% block title %}
+Entreprises - Career Bloom
+{% endblock %}

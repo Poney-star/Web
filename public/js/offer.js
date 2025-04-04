@@ -18,7 +18,6 @@ function getSelectedFilters(filters = {}) {
       filters[category].push(value);
     }
   });
-  console.log(filters);
   return filters;
 }
 
@@ -31,7 +30,7 @@ async function listOffers(filters) {
         'X-Requested-With': 'XMLHttpRequest' 
       },
       body: JSON.stringify({
-        action: 'reloadpage', 
+        action: 'offer', 
         filters: filters
       })
     }); 
@@ -77,7 +76,7 @@ favBtns.forEach(btn => {
     });
 });
 
-// Favorite button functionality
+// Checkboxes functionality
 const checkbox = document.querySelectorAll('.filter-checkbox');
 
 checkbox.forEach(check => {

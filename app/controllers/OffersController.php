@@ -20,7 +20,7 @@ class OffersController
 
     public function loadpage()
     {
-        echo $this->twig->render('pages/offer.twig', ['offers' => $this->offerModel->listOffers(page : $this->offerIndex, limit : 20, orderby : "Date_Mise_En_Ligne"), 'pages' => $this->offerIndex, 'filters' => $this->offerModel->getFilters()]);
+        echo $this->twig->render('pages/offer.twig', ['offers' => $this->offerModel->listOffers(page : $this->offerIndex, limit : 20, orderby : "Date_Mise_En_Ligne"), 'page' => $this->offerIndex, 'filters' => $this->offerModel->getFilters()]);
     }
 
     public function reloadpage()

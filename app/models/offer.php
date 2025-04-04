@@ -29,7 +29,7 @@ class OfferModel {
     public function listOffers($secteur = null, $localisation = null, $duree = null, $entreprise = null, $page = 1, $limit = 20, $orderby = "Date_Mise_En_Ligne") {
     
         // Construction de la requête de base
-        $sql = 'SELECT offre.*, entreprise.Nom, entreprise.Ville, 
+        $sql = 'SELECT offre.Titre, offre.Secteur_Activite, offre.Base_Remuneration , entreprise.Nom, entreprise.Ville, 
                 TIMESTAMPDIFF(MONTH, offre.Date_Debut_Stage, offre.Date_Fin_Stage) AS Duree 
                 FROM offre 
                 JOIN entreprise ON offre.Mail_Entreprise = entreprise.Mail_Entreprise';

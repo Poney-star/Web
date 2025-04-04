@@ -10,17 +10,40 @@
     "cover-company-33.jpg"
 ] %}
 {% for company in companys %}
-    <article class="article-card">
-        <img src="assets/{{ random(images) }}" alt="Image de l'offre">
-        <div class="article-content">
-            <h3>{{ company.Nom }}</h3>
-            <p class="category">{{ company.Ville }}</p>
-            <p class="price">{{ company.Base_Remuneration }}</p>
-            <p class="date">{{ company.note }}</p>
+    <div class="card">
+        <div class="card-image">
+            <img src="assets/covers/companys/{{ random(images) }}" alt="Image Entreprise">
         </div>
-    </article>
+        <div class="card-content">
+            <button class="favorite-btn"></button>
+            <div class="card-info">
+                <h3 class="card-title">Nom : <span>{{ company.Nom }}</span></h3>
+                <p class="card-location">Ville : <span>{{ company.Adresse }}</span></p>
+            </div>
+            <div class="card-details">
+                <p>Nombre de stages : <span>{{ company.Nombre_De_Stages }}</span></p>
+            </div>
+            <div class="stars">
+                {% if company.Note is not empty %}
+                    {% for i in 1..(company.Note| round) %}
+                        <span class="star">Note : ★</span>
+                    {% endfor %}
+                    {% for i in 1..(5 - company.Note|round) %}
+                        <span class="star" style="color: #ccc;">★</span>
+                    {% endfor %}
+                {% else %}
+                    {% for i in 1..5 %}
+                        <span class="star" style="color: #ccc;">Note : ★</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="card-actions">
+                <button class="action-btn edit-btn">Modifier</button>
+                <span class="action-separator">/</span>
+                <button class="action-btn delete-btn">Supprimer</button>
+            </div>
+        </div>
+    </div>
 {% else %}
-    <p>Aucune offre disponible pour le moment.</p>
+    <p>Aucune entreprise disponible pour le moment.</p>
 {% endfor %}
-
-A FAIRREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
