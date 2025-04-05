@@ -12,27 +12,27 @@ class OfferModel {
     }
 
     public function ajouterOffre($titre, $description, $remuneration, $dateDebut, $dateFin, $secteurActivite, $mailEntreprise) {
-        $stmt = $pdo->prepare("INSERT INTO Offre (Titre, Description_Offre, Base_Remuneration, Date_Mise_En_Ligne, Date_Debut_Stage, Date_Fin_Stage, Secteur_Activite, Mail_Entreprise) VALUES (" . $titre . "," . $description . "," . $remuneration . "," . $dateDebut . "," . $dateFin . "NOW(), " . $secteurActivite . ", " . $mailEntreprise .  ");");
+        $stmt = $pdo->prepare("INSERT INTO Offres (Titre, Description_Offre, Base_Remuneration, Date_Mise_En_Ligne, Date_Debut_Stage, Date_Fin_Stage, Secteur_Activite, Mail_Entreprise) VALUES (" . $titre . "," . $description . "," . $remuneration . "," . $dateDebut . "," . $dateFin . "NOW(), " . $secteurActivite . ", " . $mailEntreprise .  ");");
         return $stmt->execute();
     }
 
     public function modifierOffre($idOffre, $titre, $description, $remuneration, $dateDebut, $dateFin, $secteurActivite) {
-        $stmt = $this->pdo->prepare("UPDATE Offre SET Titre = " . $titre . ", Description_Offre = " . $description . ", Base_Remuneration = " . $remuneration . ", Date_Debut_Stage = " . $dateDebut . ", Date_Fin_Stage = " . $dateFin . ", Secteur_Activite = " . $secteurActivite . " WHERE Id_Offre = " . $idOffre);
+        $stmt = $this->pdo->prepare("UPDATE Offres SET Titre = " . $titre . ", Description_Offre = " . $description . ", Base_Remuneration = " . $remuneration . ", Date_Debut_Stage = " . $dateDebut . ", Date_Fin_Stage = " . $dateFin . ", Secteur_Activite = " . $secteurActivite . " WHERE Id_Offre = " . $idOffre);
         return $stmt->execute();
     }
 
     public function supprimerOffre($idOffre) {
-        $stmt = $this->pdo->prepare("DELETE FROM Offre WHERE Id_Offre = " . $idOffre);
+        $stmt = $this->pdo->prepare("DELETE FROM Offres WHERE Id_Offre = " . $idOffre);
         return $stmt->execute();
     }
 
     public function listOffers($secteur = null, $localisation = null, $duree = null, $entreprise = null, $page = 1, $limit = 20, $orderby = "Date_Mise_En_Ligne") {
     
         // Construction de la requête de base
-        $sql = 'SELECT offre.Titre, offre.Secteur_Activite, offre.Base_Remuneration , entreprise.Nom, entreprise.Ville, 
-                TIMESTAMPDIFF(MONTH, offre.Date_Debut_Stage, offre.Date_Fin_Stage) AS Duree 
-                FROM offre 
-                JOIN entreprise ON offre.Mail_Entreprise = entreprise.Mail_Entreprise';
+        $sql = 'SELECT offres.Titre, offres.Secteur_Activite, offres.Base_Remuneration , entreprises.Nom, entreprises.Ville, 
+                TIMESTAMPDIFF(MONTH, offres.Date_Debut_Stage, offres.Date_Fin_Stage) AS Duree 
+                FROM offres 
+                JOIN entreprises ON offres.Mail_Entreprise = entreprises.Mail_Entreprise';
         
         $conditions = [];
         $params = [];
@@ -40,11 +40,11 @@ class OfferModel {
         // Gestion des secteurs (OR sur les LIKE)
         if (!empty($secteur)) {
             if (is_array($secteur)) {
-                $placeholders = implode(' OR ', array_fill(0, count($secteur), 'offre.Secteur_Activite LIKE ?'));
+                $placeholders = implode(' OR ', array_fill(0, count($secteur), 'offres.Secteur_Activite LIKE ?'));
                 $conditions[] = "($placeholders)";
                 foreach ($secteur as $s) $params[] = "%$s%";
             } else {
-                $conditions[] = 'offre.Secteur_Activite LIKE ?';
+                $conditions[] = 'offres.Secteur_Activite LIKE ?';
                 $params[] = "%$secteur%";
             }
         }
@@ -52,11 +52,11 @@ class OfferModel {
         // Gestion des localisations (OR sur les LIKE)
         if (!empty($localisation)) {
             if (is_array($localisation)) {
-                $placeholders = implode(' OR ', array_fill(0, count($localisation), 'entreprise.Ville LIKE ?'));
+                $placeholders = implode(' OR ', array_fill(0, count($localisation), 'entreprises.Ville LIKE ?'));
                 $conditions[] = "($placeholders)";
                 foreach ($localisation as $l) $params[] = "%$l%";
             } else {
-                $conditions[] = 'entreprise.Ville LIKE ?';
+                $conditions[] = 'entreprises.Ville LIKE ?';
                 $params[] = "%$localisation%";
             }
         }
@@ -65,10 +65,10 @@ class OfferModel {
         if (!empty($duree)) {
             if (is_array($duree)) {
                 $placeholders = implode(',', array_fill(0, count($duree), '?'));
-                $conditions[] = "TIMESTAMPDIFF(MONTH, offre.Date_Debut_Stage, offre.Date_Fin_Stage) IN ($placeholders)";
+                $conditions[] = "TIMESTAMPDIFF(MONTH, offres.Date_Debut_Stage, offres.Date_Fin_Stage) IN ($placeholders)";
                 $params = array_merge($params, $duree);
             } else {
-                $conditions[] = 'TIMESTAMPDIFF(MONTH, offre.Date_Debut_Stage, offre.Date_Fin_Stage) = ?';
+                $conditions[] = 'TIMESTAMPDIFF(MONTH, offres.Date_Debut_Stage, offres.Date_Fin_Stage) = ?';
                 $params[] = $duree;
             }
         }
@@ -76,11 +76,11 @@ class OfferModel {
         // Gestion des entreprises (OR sur les LIKE)
         if (!empty($entreprise)) {
             if (is_array($entreprise)) {
-                $placeholders = implode(' OR ', array_fill(0, count($entreprise), 'entreprise.Nom LIKE ?'));
+                $placeholders = implode(' OR ', array_fill(0, count($entreprise), 'entreprises.Nom LIKE ?'));
                 $conditions[] = "($placeholders)";
                 foreach ($entreprise as $e) $params[] = "%$e%";
             } else {
-                $conditions[] = 'entreprise.Nom LIKE ?';
+                $conditions[] = 'entreprises.Nom LIKE ?';
                 $params[] = "%$entreprise%";
             }
         }
@@ -103,7 +103,7 @@ class OfferModel {
 
     public function searchOfferbyKeyword($keyword)
     {
-        $query = "SELECT entreprise.Nom, offre.Titre, entreprise.Ville, offre.Secteur_Activite, offre.Base_Remuneration, TIMESTAMPDIFF(MONTH, offre.Date_Debut_Stage, offre.Date_Fin_Stage) AS Duree FROM offre JOIN entreprise ON offre.Mail_Entreprise = entreprise.Mail_Entreprise WHERE offre.Titre LIKE " . "%$keyword%";
+        $query = "SELECT entreprises.Nom, offres.Titre, entreprises.Ville, offres.Secteur_Activite, offres.Base_Remuneration, TIMESTAMPDIFF(MONTH, offres.Date_Debut_Stage, offres.Date_Fin_Stage) AS Duree FROM offre JOIN entreprises ON offres.Mail_Entreprise = entreprises.Mail_Entreprise WHERE offres.Titre LIKE " . "%$keyword%";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -111,7 +111,7 @@ class OfferModel {
 
     public function searchOfferbyCity($city)
     {
-        $query = "SELECT entreprise.Nom, offre.Titre, entreprise.Ville, offre.Secteur_Activite, offre.Base_Remuneration, TIMESTAMPDIFF(MONTH, offre.Date_Debut_Stage, offre.Date_Fin_Stage) AS Duree FROM offre JOIN entreprise ON offre.Mail_Entreprise = entreprise.Mail_Entreprise WHERE entreprise.Ville LIKE " . "%$city%";
+        $query = "SELECT entreprises.Nom, offres.Titre, entreprises.Ville, offres.Secteur_Activite, offres.Base_Remuneration, TIMESTAMPDIFF(MONTH, offres.Date_Debut_Stage, offres.Date_Fin_Stage) AS Duree FROM offres JOIN entreprises ON offres.Mail_Entreprise = entreprises.Mail_Entreprise WHERE entreprises.Ville LIKE " . "%$city%";
         $stmt = $this->pdo->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -120,21 +120,21 @@ class OfferModel {
     public function getFilters()
     {
         $queries = [
-            "SELECT DISTINCT entreprise.Nom 
-             FROM entreprise 
-             JOIN offre ON offre.Mail_Entreprise = entreprise.Mail_Entreprise 
-             GROUP BY entreprise.Nom 
-             HAVING COUNT(offre.Id_Offre) > 0",
+            "SELECT DISTINCT entreprises.Nom 
+             FROM entreprises
+             JOIN offres ON offres.Mail_Entreprise = entreprises.Mail_Entreprise 
+             GROUP BY entreprises.Nom 
+             HAVING COUNT(offres.Id_Offre) > 0",
 
-            "SELECT DISTINCT offre.Secteur_Activite FROM offre",
+            "SELECT DISTINCT offres.Secteur_Activite FROM offres",
 
-            "SELECT DISTINCT entreprise.Ville 
-             FROM entreprise 
-             JOIN offre ON offre.Mail_Entreprise = entreprise.Mail_Entreprise 
-             GROUP BY entreprise.Ville 
-             HAVING COUNT(offre.Id_Offre) > 0",
+            "SELECT DISTINCT entreprises.Ville 
+             FROM entreprises
+             JOIN offres ON offres.Mail_Entreprise = entreprises.Mail_Entreprise 
+             GROUP BY entreprises.Ville 
+             HAVING COUNT(offres.Id_Offre) > 0",
 
-            "SELECT DISTINCT TIMESTAMPDIFF(MONTH, offre.Date_Debut_Stage, offre.Date_Fin_Stage) AS Duree FROM offre"
+            "SELECT DISTINCT TIMESTAMPDIFF(MONTH, offres.Date_Debut_Stage, offres.Date_Fin_Stage) AS Duree FROM offres"
         ];
         $filters = [];
         foreach ($queries as $query) {

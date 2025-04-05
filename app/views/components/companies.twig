@@ -5,11 +5,11 @@
     "cover-company-13.jpg", "cover-company-14.jpg", "cover-company-15.jpg", "cover-company-16.jpg",
     "cover-company-17.jpg", "cover-company-18.jpg", "cover-company-19.jpg", "cover-company-20.jpg",
     "cover-company-21.jpg", "cover-company-22.jpg", "cover-company-23.jpg", "cover-company-24.jpg",
-    "cover-company-25.jpg", "cover-company-26.webp", "cover-company-27.jpg", "cover-company-28.jpg",
+    "cover-company-25.jpg", "cover-company-26.jpg", "cover-company-27.jpg", "cover-company-28.jpg",
     "cover-company-29.jpg", "cover-company-30.jpg", "cover-company-31.jpg", "cover-company-32.jpg",
     "cover-company-33.jpg"
 ] %}
-{% for company in companys %}
+{% for company in companies %}
     <div class="card">
         <div class="card-image">
             <img src="assets/covers/companys/{{ random(images) }}" alt="Image Entreprise">
@@ -18,7 +18,7 @@
             <button class="favorite-btn"></button>
             <div class="card-info">
                 <h3 class="card-title">Nom : <span>{{ company.Nom }}</span></h3>
-                <p class="card-location">Ville : <span>{{ company.Adresse }}</span></p>
+                <p class="card-location">Adresse : <span>{{ company.Adresse }}</span></p>
             </div>
             <div class="card-details">
                 <p>Nombre de stages : <span>{{ company.Nombre_De_Stages }}</span></p>
@@ -26,14 +26,16 @@
             <div class="stars">
                 {% if company.Note is not empty %}
                     {% for i in 1..(company.Note| round) %}
-                        <span class="star">Note : ★</span>
+                        <span class="star">★</span>
                     {% endfor %}
-                    {% for i in 1..(5 - company.Note|round) %}
-                        <span class="star" style="color: #ccc;">★</span>
-                    {% endfor %}
+                    {% if (5 - company.Note|round) > 0 %}
+                        {% for i in 1..(5 - company.Note|round) %}
+                            <span class="star" style="color: #ccc;">★</span>
+                        {% endfor %}
+                    {% endif %}
                 {% else %}
                     {% for i in 1..5 %}
-                        <span class="star" style="color: #ccc;">Note : ★</span>
+                        <span class="star" style="color: #ccc;">★</span>
                     {% endfor %}
                 {% endif %}
             </div>

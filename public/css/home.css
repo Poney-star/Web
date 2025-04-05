@@ -294,7 +294,7 @@ nav ul li a.active {
     display: flex;
     place-content: center;
     z-index: 0;
-    max-width: 600px;
+    max-width: 100px;
     margin: 0 auto;
 }
 

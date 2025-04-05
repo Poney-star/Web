@@ -9,6 +9,7 @@ function getSelectedFilters(filters = {}) {
         if (!filters[category]) {
           filters[category] = [];
         }
+        console.log(category);
         // Convertit en nombre si c'est une durée
         const value = category === 'note' 
           ? Number(checkbox.value) 

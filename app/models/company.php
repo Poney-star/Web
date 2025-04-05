@@ -10,22 +10,22 @@ class CompanyModel {
     }
 
     public function creerEntreprise($mail, $nom, $adresse, $description, $telephone) {
-        $stmt = $pdo->prepare("INSERT INTO Entreprise VALUES (?, ?, ?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO Entreprises VALUES (?, ?, ?, ?, ?)");
         return $stmt->execute([$mail, $nom, $adresse, $description, $telephone]);
     }
 
     public function ajouterGerant($mailUtilisateur, $mailEntreprise) {
-        $stmt = $pdo->prepare("INSERT INTO gere VALUES (?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO gerants VALUES (?, ?)");
         return $stmt->execute([$mailUtilisateur, $mailEntreprise]);
     }
 
     public function listerEntreprises() {
-        $stmt = $pdo->query("SELECT * FROM Entreprise");
+        $stmt = $pdo->query("SELECT * FROM Entreprises");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function entreprisesGereesParUtilisateur($mailUtilisateur) {
-        $stmt = $pdo->prepare("SELECT Entreprise.* FROM Entreprise JOIN gere ON EntrepriseE.Mail_Entreprise = gere.Mail_Entreprise WHERE gere.Mail_Utilisateur = ?");
+        $stmt = $pdo->prepare("SELECT Entreprises.* FROM Entreprises JOIN gerants ON Entreprises.Mail_Entreprise = gerants.Mail_Entreprise WHERE gere.Mail_Utilisateur = ?");
         $stmt->execute([$mailUtilisateur]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -34,7 +34,7 @@ class CompanyModel {
     {
         
         // Construction de la requête de base
-        $sql = 'SELECT entreprise.Nom, entreprise.Adresse, entreprise.Ville, COUNT(offre .Id_Offre) AS Nombre_De_Stages, ROUND(AVG(evaluations.note), 1) AS Note FROM entreprise LEFT JOIN offre ON entreprise.Mail_Entreprise = offre.Mail_Entreprise LEFT JOIN evaluations ON evaluations.Mail_Entreprise = entreprise.Mail_Entreprise GROUP BY entreprise.Mail_Entreprise';
+        $sql = 'SELECT entreprises.Nom, entreprises.Adresse, entreprises.Ville, COUNT(offres.Id_Offre) AS Nombre_De_Stages, ROUND(AVG(evaluations.note), 1) AS Note FROM entreprises LEFT JOIN offres ON entreprises.Mail_Entreprise = offres.Mail_Entreprise LEFT JOIN evaluations ON evaluations.Mail_Entreprise = entreprises.Mail_Entreprise GROUP BY entreprises.Mail_Entreprise';
         
         $conditions = [];
         $params = [];
@@ -42,11 +42,11 @@ class CompanyModel {
         // Gestion des villes (OR sur les LIKE)
         if (!empty($ville)) {
             if (is_array($ville)) {
-                $placeholders = implode(' OR ', array_fill(0, count($ville), 'entreprise.Ville LIKE ?'));
+                $placeholders = implode(' OR ', array_fill(0, count($ville), 'entreprises.Ville LIKE ?'));
                 $conditions[] = "($placeholders)";
                 foreach ($ville as $v) $params[] = "%$v%";
             } else {
-                $conditions[] = 'entreprise.Ville LIKE ?';
+                $conditions[] = 'entreprises.Ville LIKE ?';
                 $params[] = "%$ville%";
             }
         }
@@ -65,7 +65,7 @@ class CompanyModel {
     
         // Assemblage final de la requête
         if (!empty($conditions)) {
-            $sql .= ' WHERE ' . implode(' AND ', $conditions);
+            $sql .= ' HAVING ' . implode(' AND ', $conditions);
         }
     
         
@@ -80,21 +80,21 @@ class CompanyModel {
     public function getFilters()
     {
         $queries = [
-            "SELECT DISTINCT entreprise.Nom 
-             FROM entreprise 
-             JOIN offre ON offre.Mail_Entreprise = entreprise.Mail_Entreprise 
-             GROUP BY entreprise.Nom 
-             HAVING COUNT(offre.Id_Offre) > 0",
+            "SELECT DISTINCT entreprises.Nom 
+             FROM entreprises 
+             JOIN offres ON offres.Mail_Entreprise = entreprises.Mail_Entreprise 
+             GROUP BY entreprises.Nom 
+             HAVING COUNT(offres.Id_Offre) > 0",
 
-            "SELECT DISTINCT offre.Secteur_Activite FROM offre",
+            "SELECT DISTINCT offres.Secteur_Activite FROM offres",
 
-            "SELECT DISTINCT entreprise.Ville 
-             FROM entreprise 
-             JOIN offre ON offre.Mail_Entreprise = entreprise.Mail_Entreprise 
-             GROUP BY entreprise.Ville 
-             HAVING COUNT(offre.Id_Offre) > 0",
+            "SELECT DISTINCT entreprises.Ville 
+             FROM entreprises 
+             JOIN offres ON offres.Mail_Entreprise = entreprises.Mail_Entreprise 
+             GROUP BY entreprises.Ville 
+             HAVING COUNT(offres.Id_Offre) > 0",
 
-            "SELECT DISTINCT TIMESTAMPDIFF(MONTH, offre.Date_Debut_Stage, offre.Date_Fin_Stage) AS Duree FROM offre"
+            "SELECT DISTINCT TIMESTAMPDIFF(MONTH, offres.Date_Debut_Stage, offres.Date_Fin_Stage) AS Duree FROM offres"
         ];
         $filters = [];
         foreach ($queries as $query) {

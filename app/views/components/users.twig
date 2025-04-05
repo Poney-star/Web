@@ -1,0 +1,35 @@
+{% for user in users %}
+    <div class="user-card">
+        <div class="user-header">
+        </div>
+        <div class="user-info">
+            <h3 class="user-name">{{ user.Prenom_Utilisateur ~ " " ~ user.Nom_Utilisateur }}</h3>
+            <p class="user-role 
+                {% if user.Droits_Utilisateur == 0 %}
+                admin
+                {% elseif user.Droits_Utilisateur == 1 %}
+                pilote
+                {% elseif user.Droits_Utilisateur == 2 %}
+                student
+                {% endif %}
+                ">
+            {% if user.Droits_Utilisateur == 0 %}
+                Administrateur
+            {% elseif user.Droits_Utilisateur == 1 %}
+                Pilote
+            {% elseif user.Droits_Utilisateur == 2 %}
+                Etudiant
+            {% endif %}
+            </p>
+            <div class="contact">
+                <span class="mail">{{ user.Mail_Utilisateur }}</span>
+                <span class="promo">{{ user.Promotion }}</span>
+            </div>
+        </div>
+        <div class="user-footer">
+            <a href="#" class="contact-btn">Contacter</a>
+        </div>
+    </div>
+{% else %}
+    <p>Aucune utilisateur disponible pour le moment.</p>
+{% endfor %}

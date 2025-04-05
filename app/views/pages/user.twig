@@ -1,0 +1,23 @@
+{% extends "basics/layout.twig" %}
+
+{% block content %}
+    <main>
+        <div class="users-container">
+            <div class="users-grid">
+                {% include 'components/users.twig' %}
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="css/user.css">
+{% endblock %}
+
+{% block scripts %}
+<script src="js/user.js"></script>
+{% endblock %}
+
+{% block title %}
+Utilisateurs - Career Bloom
+{% endblock %}

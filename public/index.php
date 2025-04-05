@@ -8,7 +8,7 @@ require_once __DIR__ .'/../app/controllers/OffersController.php';
 require_once __DIR__ .'/../app/controllers/ErrorController.php';
 require_once __DIR__ .'/../app/controllers/UsersController.php';
 require_once __DIR__ .'/../app/controllers/ProfileController.php';
-require_once __DIR__ .'/../app/controllers/LoginController.php';
+require_once __DIR__ .'/../app/controllers/SignInController.php';
 require_once __DIR__ .'/../app/controllers/SignUpController.php';
 
 $page = $_GET['page'] ?? 'home';
@@ -21,22 +21,22 @@ if ($page === 'home')
     $controller = new ContactController();
 } else if ($page === 'companies')
 {
-    $page = $_GET['l'] ?? '1';
+    $page = $_GET['l'] ?? 1;
     $controller = new CompaniesController($page);
 } else if ($page === 'offers')
 {
-    $page = $_GET['l'] ?? '1';
+    $page = $_GET['l'] ?? 1;
     $controller = new OffersController($page);
 } else if ($page === 'users')
 {
-    $page = $_GET['l'] ?? '1';
+    $page = $_GET['l'] ?? 1;
     $controller = new UsersController($page);
 } else if ($page === 'profile')
 {
     $controller = new ProfileController();
-} else if ($page === 'login')
+} else if ($page === 'sign-in')
 {
-    $controller = new LoginController();
+    $controller = new SignInController();
 } else if ($page === 'sign-up')
 {
     $controller = new SignUpController();

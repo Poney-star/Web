@@ -1,0 +1,60 @@
+{% extends "basics/layout.twig" %}
+
+{% block content %}
+<main>
+    <div class="contact-container">
+        <h1 class="contact-title">Créer un compte</h1>
+
+        <form class="contact-form" id="signupForm">
+            <div class="form-group">
+                <label for="email">Mail *</label>
+                <input type="email" id="email" required>
+                <div class="error" id="emailError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Mot de passe *</label>
+                <input type="password" id="password" required>
+                <div class="error" id="passwordError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="lastname">Nom *</label>
+                <input type="text" id="lastname" required>
+                <div class="error" id="lastnameError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="firstname">Prénom *</label>
+                <input type="text" id="firstname" required>
+                <div class="error" id="firstnameError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="promo">Promotion</label>
+                <input type="text" id="promo">
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                </svg>
+                Créer le compte
+            </button>
+        </form>
+        <p style="text-align: center; margin-top: 1rem;" class ="not-found"></p>
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script src="js/sign-up.js"></script>
+{% endblock %}
+
+{% block title %}
+Inscription - Career Bloom
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="css/sign-in.css">
+{% endblock %}

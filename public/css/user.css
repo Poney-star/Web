@@ -15,6 +15,40 @@
     font-family: 'Poppins', sans-serif;
 }
 /* Users page specific styles */
+
+.contact {
+    display: block;
+}
+
+.contact span {
+    display: block;
+    margin-bottom: 4px; /* espace entre les lignes */
+}
+
+.user-role {
+    padding: 6px 12px;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 14px;
+}
+
+/* Couleurs par rôle */
+.user-role.admin {
+    background-color: #e74c3c; /* Rouge */
+}
+
+.user-role.pilote {
+    background-color: #f1c40f; /* Jaune */
+    color: #000; /* meilleure lisibilité sur fond jaune */
+}
+
+.user-role.student {
+    background-color: #2ecc71; /* Vert */
+}
+
+
 body {
     background: radial-gradient(rgb(180, 226, 253), var(--secondary-color));
     color: var(--text-color);

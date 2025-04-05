@@ -1,0 +1,49 @@
+{% extends "basics/layout.twig" %}
+
+{% block content %}
+<main>
+    <div class="contact-container">
+        <h1 class="contact-title">Se connecter</h1>
+
+        <form class="contact-form" id="loginForm">
+            <div class="form-group">
+                <label for="email">Mail *</label>
+                <input type="email" id="email" required>
+                <div class="error" id="emailError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Mot de passe *</label>
+                <input type="password" id="password" required>
+                <div class="error" id="passwordError"></div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                </svg>
+                Se connecter
+            </button>
+        </form>
+        <p style="text-align: center; margin-top: 1rem;" class ="not-found"></p>
+        <p style="text-align: center; margin-top: 1rem;">
+            <a href="?page=sign-up" style="color: var(--text-color); text-decoration: underline; font-weight: 500;">Je n'ai pas de compte</a>
+        </p>
+        <div class="required-note">Les champs marqués d'un (*) sont obligatoires</div>
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script src="js/sign-in.js"></script>
+{% endblock %}
+
+
+{% block stylesheets %}
+<link rel="stylesheet" href="css/sign-in.css">
+{% endblock %}
+
+
+{% block title %}
+Connexion - Career Bloom
+{% endblock %}
