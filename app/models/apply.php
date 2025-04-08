@@ -6,7 +6,7 @@ class Apply {
         return $stmt->execute([$mailUtilisateur, $idOffre, $cv, $lettre]);
     }
 
-    public function listerOffresPostulees($mailUtilisateur) {
+    public function listOfferFromUser($mailUtilisateur) {
         $stmt = $pdo->prepare("SELECT Offre.* FROM Offre JOIN postule ON Offre.Id_Offre = postule.Id_Offre WHERE postule.Mail_Utilisateur = ?");
         $stmt->execute([$mailUtilisateur]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
